@@ -29,7 +29,7 @@ export const reducerWeather=(state,action)=>{
         if(state.refresh!=undefined)
         {
             console.log(state.refresh);
-            state.refresh = Math.random();                 
+            state.refresh = Math.random();                 ;;;
         }
     }
 
