@@ -5,7 +5,7 @@ import {SearchAction,clearAction} from './Reducers/weather_reducer';
 let RunHttpFlag = true;
 
 export const PageSearch = ()=>{
-
+    
     const [state,setState] = useState(0);
 
     const dispachNow = useDispatch();
@@ -23,8 +23,9 @@ export const PageSearch = ()=>{
       .then(res => res.json())
       .then(
           (result) => {      
-      console.log("OK");
+      console.log("Return from weather site");
       console.log(result);  
+
       dispachNow(SearchAction(result));
       },
           // Note: it's important to handle errors here
@@ -44,6 +45,9 @@ export const PageSearch = ()=>{
         <button onClick={()=>{
             console.log("Get button");
             console.log(RunHttpFlag);
+
+
+            // Call to Load            
             RunHttpFlag=!RunHttpFlag;
             refresh();
 
@@ -57,7 +61,7 @@ export const PageSearch = ()=>{
         
     }></input>
 
-{weaterState?.current.humidity}
+{weaterState?.current?.humidity}
  
     </div>
 }
