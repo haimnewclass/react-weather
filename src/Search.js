@@ -6,19 +6,20 @@ let RunHttpFlag = true;
 
 export const Search = ()=>{
     
-    const [state,setState] = useState(0);
+    const [state,setState] = useState("London");
+    const [refreshState,setrefreshState] = useState(0);
 
     const dispachNow = useDispatch();
     let weaterState = useSelector(s=>s.weather);
 
     const refresh=()=>{
-        setState(Math.random());
+        setrefreshState(Math.random());
     }
 
     const load=()=>
-    {                                                                             
-      console.log('Start Load');
-      let url="https://api.weatherapi.com/v1/current.json?key=b480e7a490374b44be472511222103&q=London&aqi=no";
+    {                                                                                   
+      let url="https://api.weatherapi.com/v1/current.json?key=b480e7a490374b44be472511222103&q="+state+"&aqi=no";
+      console.log(url);
       fetch(url)
       .then(res => res.json())
       .then(
@@ -43,10 +44,11 @@ export const Search = ()=>{
     // https://api.weatherapi.com/v1/current.json?key=b480e7a490374b44be472511222103&q=London&aqi=no
     return <div>Page Search
         <button onClick={()=>{
-            console.log("Get button");
-            console.log(RunHttpFlag);
+            console.log("Get button clicked");
+          
 
 
+            console.log(state);
             // Call to Load            
             RunHttpFlag=!RunHttpFlag;
             refresh();
@@ -56,7 +58,8 @@ export const Search = ()=>{
         }}>Get</button> 
         
         <input onChange={(e)=>{
-           
+           setState(e.target.value);
+           console.log('Set stage changed to'+e.target.value);
         }
         
     }></input>
