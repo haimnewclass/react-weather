@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import {SearchAction,clearAction} from './Reducers/weather_reducer';
+import {SearchAction,clearAction,addToHistoryAction} from './Reducers/weather_reducer';
 
 let RunHttpFlag = true;
 
@@ -23,11 +23,15 @@ export const Search = ()=>{
       fetch(url)
       .then(res => res.json())
       .then(
-          (result) => {      
+          (result) => {
       console.log("Return from weather site");
       console.log(result);  
 
+      
+    
       dispachNow(SearchAction(result));
+      dispachNow(addToHistoryAction(result));
+      
       },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow

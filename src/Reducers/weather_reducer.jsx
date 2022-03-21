@@ -12,21 +12,39 @@ export const clearAction=()=>{
 }
 
 // Reducer
-//export const reducerWeather=(state={lastSearthResult:'',history:[]},action)=>{
-    export const reducerWeather=(state={},action)=>{
+export const reducerWeather=(state,action)=>{
+    //export const reducerWeather=(state={},action)=>{
 
-    
+    console.log('reducer');
+    console.log(state);
+    console.log(action);
+    const resetO = {lastSearthResult:{},history:[],refresh:0};
+    if(state===0)
+    {
+        state = resetO;                                                                         
+    }
+    else{
+        console.log('Refresh counter');
+        
+        if(state.refresh!=undefined)
+        {
+            console.log(state.refresh);
+            state.refresh = Math.random();                 
+        }
+    }
 
-    switch(action.type)
+    switch(action.type)                                                                                                                                                                                        
     {
         case "WEATHER.SEARCH":
-        return state=action.data;
+            state.lastSearthResult = action.data;
+        return state;
         break;
         case "WEATHER.ADD-TO-HISTORY":
-            return state=action.data;
+            state.history.push(action.data);
+            return state;
         break;
             case "WEATHER.CLEAR":
-        return state={};
+        return resetO;
         break;
         
         default:

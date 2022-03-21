@@ -12,7 +12,7 @@ const store = createStore(allReducers,window.__REDUX_DEVTOOLS_EXTENSION__ && win
 
 ReactDOM.render(
   <React.StrictMode>
-     <Provider store={store}>      
+     <Provider store={store}>   
     <App />
     </Provider>
   </React.StrictMode>,
