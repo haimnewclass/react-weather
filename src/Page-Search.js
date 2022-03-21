@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import {SearchAction,clearAction} from './Reducers/weather_reducer';
 
 let RunHttpFlag = true;
 
 export const PageSearch = ()=>{
 
     const [state,setState] = useState(0);
+
+    const dispachNow = useDispatch();
+    let weaterState = useSelector(s=>s.weather);
 
     const refresh=()=>{
         setState(Math.random());
@@ -20,7 +25,7 @@ export const PageSearch = ()=>{
           (result) => {      
       console.log("OK");
       console.log(result);  
-           
+      dispachNow(SearchAction(result));
       },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -41,7 +46,9 @@ export const PageSearch = ()=>{
             console.log(RunHttpFlag);
             RunHttpFlag=!RunHttpFlag;
             refresh();
-                    
+
+            
+            console.log(weaterState);
         }}>Get</button> 
         
         <input onChange={(e)=>{
@@ -50,7 +57,7 @@ export const PageSearch = ()=>{
         
     }></input>
 
-
+{weaterState?.current.humidity}
  
     </div>
 }
