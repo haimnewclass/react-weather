@@ -15,6 +15,6 @@ export const Result = ()=>{
 temp_c:{weaterState?.lastSearthResult?.current?.temp_c}<br/>
 humidity:{weaterState?.lastSearthResult?.current?.humidity}<br/>
 cloud:{weaterState?.lastSearthResult?.current?.cloud}<br/>
- 
+ {weaterState?.refresh}
     </div>
 }
