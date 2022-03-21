@@ -4,17 +4,17 @@ import {SearchAction,clearAction} from './Reducers/weather_reducer';
 
 let RunHttpFlag = true;
 
-export const Result = ()=>{
+export const History = ()=>{
 
     let weaterState = useSelector(s=>s.weather);
 
     
     // https://api.weatherapi.com/v1/current.json?key=b480e7a490374b44be472511222103&q=London&aqi=no
-    return <div>Page Result
+    return <div>Page History
         **
-temp_c:{weaterState?.lastSearthResult?.current?.temp_c}<br/>
-humidity:{weaterState?.lastSearthResult?.current?.humidity}<br/>
-cloud:{weaterState?.lastSearthResult?.current?.cloud}<br/>
+temp_c:{weaterState?.history.map((i)=>{
+    return <div>{i.location.name}-{i.location.country} : temp_c:{i.current.temp_c} humiditi:{i.current.humidity}</div>
+})}<br/>
  
     </div>
 }

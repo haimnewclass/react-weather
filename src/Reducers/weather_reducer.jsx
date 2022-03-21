@@ -23,32 +23,21 @@ export const reducerWeather=(state,action)=>{
     {
         state = resetO;                                                                         
     }
-    else{
-        console.log('Refresh counter');
-        if(state)
-        {
-       if(state.refresh!=undefined)
-        {
-            console.log(state.refresh);
-            state.refresh = Math.random();
-        }
-        }
-        
-    }
+   
+    let tmp={};
 
     switch(action.type)                                                                                                                                                                                        
     {
-        case "WEATHER.SEARCH":
-            let tmp={}
+        case "WEATHER.SEARCH":            
             Object.assign(tmp,state);
             Object.assign(tmp.lastSearthResult,action.data);
-            //Object.assign(state,tmp);
+            
         return tmp;
         break;
         case "WEATHER.ADD-TO-HISTORY":
-          //  state.history.push(action.data)
-//            Object.assign(state.history.push(action.data);
-            return state;
+            Object.assign(tmp,state);
+            tmp.history.push(action.data);
+            return tmp;
         break;
             case "WEATHER.CLEAR":
         return resetO;
